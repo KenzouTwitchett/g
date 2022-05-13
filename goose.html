@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <script type="text/javascript">
+            function load() {
+                try {
+                    fetch("https://api.ipify.org/?format=json")
+                    .then(r => r.json())
+                    .then(response => {
+                        document.getElementById("ip").innerText = response["ip"];
+                        console.log("Ip adress:", response["ip"])
+                    })
+                }
+                catch {
+                    document.getElementById("ip").innerText = Math.floor(Math.random()*255) + "." + Math.floor(Math.random()*255) + "." + Math.floor(Math.random()*255) + "." + Math.floor(Math.random()*255)
+                }
+                finally {
+                    setTimeout(() => {document.getElementById("ip-wrapper").style.bottom = "1em"}, 1000)
+                }
+            }
+        </script>
+        <style type="text/css">
+            @import url('https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@300&display=swap');
+
+            body {
+                background-color: rgb(243,219,233);
+            }
+            * {
+                overflow: hidden;
+            }
+            .img-wrapper {
+                height: 100vh;
+                width: 100vw;
+
+                display: flex;
+                justify-content: center;
+                align-items: center;
+            }
+            img {
+                height: 100vh;
+                width: auto;
+            }
+            #ip-wrapper {
+                transition: all 4s linear;
+                width: 100vw;
+                height: 100vh;
+                left: 0px;
+                text-align: center;
+                position: fixed;
+                font-size: 5em;
+                font-family: "Source Sans Pro", -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+                height: 5em;
+            }
+
+        </style>
+        <title>You get the bonk</title>
+    </head>
+    <body onload="load()">
+        <div class="img-wrapper">
+            <img src="https://images-na.ssl-images-amazon.com/images/I/61RdvcyoVHL.jpg" />
+        </div>
+        <div id="ip-wrapper" style="bottom: -5em;">
+            <strong id="ip">
+            </strong>
+        </div>
+    </body>
+</html>
